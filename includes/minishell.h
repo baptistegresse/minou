@@ -8,6 +8,10 @@
 #include "../libft/includes/libft.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 typedef struct		s_env
 {
@@ -22,8 +26,7 @@ typedef struct		s_data
 }					t_data;
 
 void	ft_parse_env(t_env **head, char **envp);
+char	**ft_expand_var(t_env **head, char	**cmds);
 char	**ft_lexer(char const *s, char c);
-char	**ft_expand(t_env **head, char	**cmds);
-char	**ft_cmds_split(char **cmds);
 
 #endif
