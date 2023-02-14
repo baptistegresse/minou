@@ -21,14 +21,22 @@ int	main(int argc, char **argv, char **envp)
 	char	**cmds_split;
 
 	data = malloc(sizeof(t_data));
-
+	
 	ft_parse_env(&data->head_env, envp);
-	// ft_print_env(&data->head_env);
 	while (1) 
 	{
 		buffer = readline(">");
+		printf("base :%s\n", buffer);
 		cmds_split = ft_lexer(buffer, ' ');
+		printf("lexer :");
+		for (i = 0; cmds_split[i]; i++)
+			printf("%s ,", cmds_split[i]);
+		printf("\nexpand var :");
 		cmds_split = ft_expand_var(&data->head_env, cmds_split);
+		for (i = 0; cmds_split[i]; i++)
+			printf("%s ,", cmds_split[i]);
+		printf("\nexpand path :");
+		cmds_split = ft_expand_path(&data->head_env, cmds_split);
 		for (i = 0; cmds_split[i]; i++)
 			printf("%s ,", cmds_split[i]);
 		printf("\n");

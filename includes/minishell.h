@@ -27,6 +27,7 @@ typedef struct		s_data
 
 void	ft_parse_env(t_env **head, char **envp);
 char	**ft_expand_var(t_env **head, char	**cmds);
+char	**ft_expand_path(t_env **head, char **cmds);
 char	**ft_lexer(char const *s, char c);
 
 #endif
