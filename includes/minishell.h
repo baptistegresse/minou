@@ -5,11 +5,11 @@
 #define SQUOTE 39
 #define DQUOTE 34
 
+
 #include "../libft/includes/libft.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -28,6 +28,8 @@ typedef struct		s_data
 void	ft_parse_env(t_env **head, char **envp);
 char	**ft_expand_var(t_env **head, char	**cmds);
 char	**ft_expand_path(t_env **head, char **cmds);
+void    ft_parse_cmd(t_data *data, char *buffer);
 char	**ft_lexer(char const *s, char c);
+char    *ft_get_env(t_env **head, char *key);
 
 #endif

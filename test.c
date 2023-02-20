@@ -25,6 +25,8 @@ t_env *add_node(t_env *head, char *key, char *value)
   return node;
 }
 
+void  ft_print_env
+
 int main(int argc, char *argv[], char *envp[])
 {
   t_env *head = NULL;

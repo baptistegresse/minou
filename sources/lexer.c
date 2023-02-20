@@ -1,10 +1,5 @@
 #include "../includes/minishell.h"
 
-/*
-	ft_quotes: This function handles quotes in the string. If the current character
-	is a quote, it loops through the string until it finds the next matching quote.
-*/
-
 static void	ft_quotes(char const *s, int *j)
 {
 	if (s[(*j)] == '"')
@@ -20,11 +15,6 @@ static void	ft_quotes(char const *s, int *j)
 			(*j)++;
 	}
 }
-
-/*
-	ft_words: This function calculates the number of words 
-	in the string using the given separator character.
-*/
 
 static int	ft_words(char const *s, char c)
 {
@@ -49,10 +39,6 @@ static int	ft_words(char const *s, char c)
 	return (words);
 }
 
-/*
-	ft_dupstr: This function duplicates a givensubstring in the original string.
-*/
-
 static char	*ft_dupstr(char const *s, int i, int j)
 {
 	char	*dup;
@@ -68,10 +54,6 @@ static char	*ft_dupstr(char const *s, int i, int j)
 	return (dup);
 }
 
-/*
-	ft_free_strs: This function frees the memory space allocated for the array of character strings.
-*/
-
 static char	**ft_free_strs(char **strs)
 {
 	int	i;
@@ -85,11 +67,6 @@ static char	**ft_free_strs(char **strs)
 	free(strs);
 	return (0);
 }
-
-/*
-	ft_lines: This function splits the string into words and stores them in the string array.
-	 It uses the ft_quotes function to handle quotes and ft_dupstr to duplicate words.
-*/
 
 static	char	**ft_lines(char const *s, char c, char **strs, int x)
 {
@@ -119,11 +96,6 @@ static	char	**ft_lines(char const *s, char c, char **strs, int x)
 	}
 	return (strs);
 }
-
-/*
-	ft_lexer: This function is the entry point of the lexer. It allocates memory space for the array of strings,
-	 calls ft_lines to split the string into words, and returns the array of strings.
-*/
 
 char	**ft_lexer(char const *s, char c)
 {
