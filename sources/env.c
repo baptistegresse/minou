@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 19:18:35 by bgresse           #+#    #+#             */
+/*   Updated: 2023/02/21 00:56:27 by bgresse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-static t_env *new_node(char *key, char *value)
+t_env *new_node(char *key, char *value)
 {
 	t_env *node;
 
@@ -10,7 +22,7 @@ static t_env *new_node(char *key, char *value)
 	return node;
 }
 
-static t_env *add_node(t_env *head, char *key, char *value)
+t_env *add_node(t_env *head, char *key, char *value)
 {
 	t_env *node;
 
@@ -21,7 +33,7 @@ static t_env *add_node(t_env *head, char *key, char *value)
 
 void	ft_parse_env(t_env **head, char **envp)
 {
-    int i;
+    size_t i;
 
     i = 0;
     while (envp[i])
