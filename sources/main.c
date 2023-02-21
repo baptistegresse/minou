@@ -6,7 +6,7 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:18:53 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/20 20:38:02 by bgresse          ###   ########.fr       */
+/*   Updated: 2023/02/21 01:37:15 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ static char    *get_env(t_env **head, char *key)
     while (temp)
     {
         if (ft_strcmp(temp->key, key) == 0)
-            return (ft_strjoin(temp->value, "@ouimishell ?> "));
+            return (ft_strjoin(ft_strjoin(""RED"➜  "CYAN"", temp->value),
+				""PURPLE"@minishell "YELLOW"$ "RESET""));
         temp = temp->next;
     }
-    return ("guest@ouimishell ?> ");
+    return (""RED"➜  "CYAN"guest"PURPLE"@minishell "YELLOW"$ "RESET"");
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -35,9 +36,7 @@ int	main(int argc, char **argv, char **envp)
 
 
 	data = malloc(sizeof(t_data));
-	prompt = malloc(100);
 	ft_parse_env(&data->head, envp);
-
 	prompt = get_env(&data->head, "USER");
 	while (1) 
 	{
