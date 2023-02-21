@@ -21,6 +21,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <linux/limits.h>
 
 typedef struct		s_env
 {
@@ -44,11 +45,14 @@ char	**ft_lexer(char const *string, char c);
 char    *ft_get_env(t_env **head, char *key);
 
 // builtin
-void	ft_builtin_env(t_env **head);
-void	ft_builtin_unset(t_env **head, char *key);
-void	ft_builtin_export(t_env **head, char *string);
+void	ft_built_in_env(t_env **head);
+void	ft_built_in_unset(t_env **head, char *key);
+void	ft_built_in_export(t_env **head, char *string);
+void	ft_built_in_cd(char *string);
+void    ft_built_in_exit(void);
+void	ft_built_in_pwd(void);
+void    ft_built_in_chat(void);
 t_env 	*add_node(t_env *head, char *key, char *value);
 t_env	*new_node(char *key, char *value);
-void    ft_builtin_chat(void);
 
 #endif

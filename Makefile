@@ -1,2 +1,2 @@
 all:
-	gcc sources/builtins/builtin_chat.c sources/builtins/builtin_env.c sources/builtins/builtin_unset.c sources/main.c sources/lexer.c sources/expand.c sources/parse_cmd.c sources/env.c -lreadline libft/libft.a && ./a.out
+	@gcc sources/builtins/built_in_export.c sources/builtins/built_in_pwd.c sources/builtins/built_in_exit.c sources/builtins/built_in_cd.c sources/builtins/built_in_env.c sources/builtins/built_in_unset.c sources/main.c sources/lexer.c sources/expand.c sources/parse_cmd.c sources/env.c -lreadline libft/libft.a && ./a.out

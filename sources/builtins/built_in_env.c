@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_cmd.c                                        :+:      :+:    :+:   */
+/*   built_in_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 19:18:58 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/21 16:36:04 by bgresse          ###   ########.fr       */
+/*   Created: 2023/02/21 16:24:14 by bgresse           #+#    #+#             */
+/*   Updated: 2023/02/21 16:24:19 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-char	*ft_get_env(t_env **head_env, char *key)
+void	ft_built_in_env(t_env **head)
 {
 	t_env	*temp;
 
-	temp = *head_env;
+	temp = *head;
 	while (temp)
 	{
-		if (ft_strcmp(temp->key, key) == 0)
-			return (temp->value);
+		printf("%s=%s\n", temp->key, temp->value);
 		temp = temp->next;
 	}
-	return (NULL);
-}
-
-void	ft_parse_cmd(t_data *data, char *buffer)
-{
-	char	**cmds;
-	int		i;
-
-	cmds = ft_lexer(buffer, ' ');
-	cmds = ft_expand_path(&data->head, cmds);
-	cmds = ft_expand_var(&data->head, cmds);
-	i = 0;
-	while (cmds[i])
-		printf ("%s:", cmds[i++]);
-	printf ("\n");
 }

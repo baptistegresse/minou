@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   built_in_pwd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:21:49 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/21 16:22:42 by bgresse          ###   ########.fr       */
+/*   Created: 2023/02/21 16:25:01 by bgresse           #+#    #+#             */
+/*   Updated: 2023/02/21 16:25:21 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../includes/minishell.h"
 
-char	*ft_strndup(char *s, size_t n)
+void	ft_built_in_pwd(void)
 {
-	char	*new;
+	char	cwd[PATH_MAX];
 
-	new = malloc(n + 1);
-	if (new)
-	{
-		ft_strncpy(new, s, n);
-		new[n] = '\0';
-	}
-	return (new);
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+		printf("%s\n", cwd);
+	else
+		perror("getcwd()");
 }
