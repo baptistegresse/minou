@@ -22,6 +22,13 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <linux/limits.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+typedef int	t_pid;
 
 typedef struct		s_env
 {
@@ -30,10 +37,36 @@ typedef struct		s_env
 	struct s_env	*next;
 }					t_env;
 
-typedef struct		s_data
+typedef struct s_cmdlist
 {
-	t_env	*head;
-}					t_data;
+	char            	**full_cmd;
+	int             	infile;
+	int	            	outfile;
+	t_pid				cmd_pid;
+    struct s_cmdlist	*next;
+}		   			 	t_cmdlist;
+
+typedef struct s_data
+{
+	char		**paths;
+
+	t_cmdlist	*cmds;
+	t_env		*head_env;
+
+	char		**envp;
+	char		**argv;
+	int			argc;
+
+	int			end[2];
+}				t_data;
+
+
+char		**ft_pathfinder(char **envp);
+char		**ft_cmd_args(char *cmd);
+void		exec_cmd(t_data *data, char *buffer);
+t_cmdlist	*ft_cmdlist(char *cmd_line);
+void		ft_print_cmdlist(t_cmdlist *cmds);
+void		pipex(t_data *data);
 
 
 // parsing

@@ -6,7 +6,7 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:10:39 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/21 16:23:03 by bgresse          ###   ########.fr       */
+/*   Updated: 2023/02/23 16:36:57 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,11 @@ void		ft_free_remove_if(t_free **begin_list, void *ptr_ref);
 int			ft_free_add(t_m_free *m_free, void *ptr);
 int			ft_free_add_value(t_m_free *m_free, t_free *new, t_free *tmp);
 int			ft_free_size(t_m_free *m_free);
+
+char		**ft_split_tokens(char const *s, char *charset);
+int			ft_separator(char c, char *charset);
+void		ft_quotes(char const *s, int *j);
+char		**ft_free_strs(char **strs);
+char		**ft_split_slash(char const *s, char c);
 
 #endif

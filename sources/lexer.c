@@ -6,27 +6,12 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:18:43 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/20 19:18:45 by bgresse          ###   ########.fr       */
+/*   Updated: 2023/02/23 16:28:18 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	ft_quotes(char const *s, int *j)
-{
-	if (s[(*j)] == '"')
-	{
-		(*j)++;
-		while (s[(*j)] && s[(*j)] != '"')
-			(*j)++;
-	}
-	else if (s[(*j)] == '\'')
-	{
-		(*j)++;
-		while (s[(*j)] && s[(*j)] != '\'')
-			(*j)++;
-	}
-}
 
 static int	ft_words(char const *s, char c)
 {
@@ -66,19 +51,6 @@ static char	*ft_dupstr(char const *s, int i, int j)
 	return (dup);
 }
 
-static char	**ft_free_strs(char **strs)
-{
-	int	i;
-
-	i = 0;
-	while (strs[i])
-	{
-		free(strs[i]);
-		i++;
-	}
-	free(strs);
-	return (0);
-}
 
 static	char	**ft_lines(char const *s, char c, char **strs, int x)
 {

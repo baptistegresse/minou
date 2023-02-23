@@ -6,7 +6,7 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:18:58 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/21 16:36:04 by bgresse          ###   ########.fr       */
+/*   Updated: 2023/02/23 16:45:35 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,8 @@ char	*ft_get_env(t_env **head_env, char *key)
 void	ft_parse_cmd(t_data *data, char *buffer)
 {
 	char	**cmds;
-	int		i;
 
 	cmds = ft_lexer(buffer, ' ');
-	cmds = ft_expand_path(&data->head, cmds);
-	cmds = ft_expand_var(&data->head, cmds);
-	i = 0;
-	while (cmds[i])
-		printf ("%s:", cmds[i++]);
-	printf ("\n");
+	cmds = ft_expand_path(&data->head_env, cmds);
+	cmds = ft_expand_var(&data->head_env, cmds);
 }
