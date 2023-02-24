@@ -6,7 +6,7 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:03:11 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/23 18:02:12 by bgresse          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:04:17 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,46 @@
 /* Handles the executions of the commands and returns the corresponding error
 if the command was not found. */
 
+int	ft_list_size(t_env *head)
+{
+	int count;
+
+	count = 0;
+	while (head)
+	{
+		count++;
+		head = head->next;
+	}
+	return (count);
+}
+
+char	**ft_join_envp(t_env **head)
+{
+	t_env	*current;
+	char	**envp;
+	size_t	i;
+
+	i = 0;
+	current = *head;
+	envp = malloc(sizeof(char *) * ft_list_size(*head));
+	while (current)
+	{
+		envp[i++] = ft_strjoin(current->key, ft_strjoin("=", current->value));
+		current = current->next;
+	}
+	envp[i] = NULL;
+	return (envp);
+}
+
 void	ft_exec(t_data *data)
 {
 	int		i;
 	char	*cmd;
+	char	**envp;
 
 	i = -1;
-	execve(data->cmds->full_cmd[0], data->cmds->full_cmd, data->envp);
+	envp = ft_join_envp(&data->head_env);
+	execve(data->cmds->full_cmd[0], data->cmds->full_cmd, envp);
 	if (data->paths)
 	{
 		while (data->paths[++i])
@@ -29,7 +62,7 @@ void	ft_exec(t_data *data)
 			cmd = ft_strjoin(data->paths[i], data->cmds->full_cmd[0]);
 			if (!cmd)
 				return ;
-			execve(cmd, data->cmds->full_cmd, data->envp);
+			execve(cmd, data->cmds->full_cmd, envp);
 			free(cmd);
 		}
 	}

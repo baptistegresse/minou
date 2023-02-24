@@ -6,7 +6,7 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:06:44 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/24 00:43:35 by bgresse          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:16:23 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 
 void	ft_newnode(t_cmdlist **cmds);
 
+void    ft_print_env(t_env **head)
+{
+    t_env   *current;
+
+    current = *head;
+    while (current)
+    {
+        printf("%s=%s\n", current->key, current->value);
+        current = current->next;
+    }
+}
 
 /* Handles redirections for each command and 
 creates a new command node everytime a '|' is found.
@@ -86,8 +97,9 @@ t_cmdlist	*ft_cmdlist(t_data *data, char *cmd_line)
 	ft_newnode(&cmds);
 	parsed_line = ft_split_tokens(cmd_line, "<|>");
 	parsed_line = ft_expand_path(&data->head_env, parsed_line);
-	parsed_line = ft_expand_var(&data->head_env, parsed_line);
+	//parsed_line = ft_expand_var(&data->head_env, parsed_line);
 	ft_redirection(parsed_line, cmds);
 	ft_fullcmds(parsed_line, cmds);
+	ft_print_cmdlist(cmds);
 	return (cmds);
 }

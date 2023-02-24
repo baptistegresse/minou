@@ -55,7 +55,7 @@ void    ft_built_in_export(t_env **head, char *string)
     size_t  i;
 
     i = 1;
-    var_list = ft_lexer(string, ' ');
+    var_list = ft_split_tokens(string, " ");
     if (!var_list[1])
         ft_print_env_sorted(*head);
     while (var_list[i])

@@ -21,7 +21,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <limits.h>
+#include <linux/limits.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/types.h>
@@ -71,11 +71,9 @@ void		pipex(t_data *data);
 
 // parsing
 void	ft_parse_env(t_env **head, char **envp);
+char    *ft_get_env(t_env **head, char *key);
 char	**ft_expand_var(t_env **head, char	**cmds);
 char	**ft_expand_path(t_env **head, char **cmds);
-char    **ft_parse_cmd(t_data *data, char *buffer);
-char	**ft_lexer(char const *string, char c);
-char    *ft_get_env(t_env **head, char *key);
 
 // builtin
 void	ft_built_in_env(t_env **head);
