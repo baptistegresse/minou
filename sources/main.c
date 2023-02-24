@@ -6,7 +6,7 @@
 /*   By: bgresse <bgresse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:18:53 by bgresse           #+#    #+#             */
-/*   Updated: 2023/02/23 18:10:53 by bgresse          ###   ########.fr       */
+/*   Updated: 2023/02/24 00:34:54 by bgresse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static char    *get_prompt(t_env *head, char *key)
 
 void	data_init(int argc, char **argv, char **envp, t_data *data)
 {
+    ft_parse_env(&data->head_env, envp);
 	data->paths = ft_pathfinder(&data->head_env);
 	data->argc = argc;
 	data->argv = argv;
@@ -44,14 +45,14 @@ void    ft_prompt(t_data *data)
 	char		*prompt;
 
 	
-	//prompt = get_prompt(data->head_env, "USER");
+	prompt = get_prompt(data->head_env, "USER");
     while (1) 
     {
-        buffer = readline("salut >");
+        buffer = readline(prompt);
         if (!buffer)
             break ;
 		add_history(buffer);
-        data->cmds = ft_cmdlist(buffer);
+        data->cmds = ft_cmdlist(data, buffer);
         pid = fork();
         if (pid == 0)
             pipex(data);
@@ -63,8 +64,7 @@ void    ft_prompt(t_data *data)
 int    main(int argc, char **argv, char **envp)
 {
     t_data data;
-	
-	//ft_parse_env(&data.head_env, envp);
+
     data_init(argc, argv, envp, &data);
     ft_prompt(&data);
     return (0);

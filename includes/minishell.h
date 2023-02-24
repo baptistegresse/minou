@@ -21,7 +21,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <linux/limits.h>
+#include <limits.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/types.h>
@@ -61,10 +61,10 @@ typedef struct s_data
 }				t_data;
 
 
-char		**ft_pathfinder(char **envp);
+char		**ft_pathfinder(t_env **head);
 char		**ft_cmd_args(char *cmd);
 void		exec_cmd(t_data *data, char *buffer);
-t_cmdlist	*ft_cmdlist(char *cmd_line);
+t_cmdlist	*ft_cmdlist(t_data *data, char *cmd_line);
 void		ft_print_cmdlist(t_cmdlist *cmds);
 void		pipex(t_data *data);
 
@@ -73,7 +73,7 @@ void		pipex(t_data *data);
 void	ft_parse_env(t_env **head, char **envp);
 char	**ft_expand_var(t_env **head, char	**cmds);
 char	**ft_expand_path(t_env **head, char **cmds);
-void    ft_parse_cmd(t_data *data, char *buffer);
+char    **ft_parse_cmd(t_data *data, char *buffer);
 char	**ft_lexer(char const *string, char c);
 char    *ft_get_env(t_env **head, char *key);
 
